@@ -1,0 +1,43 @@
+<!-- users/templates/users/base.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JanSamadhan</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+</head>
+<body>
+    <div class="navbar" style="background-color: #007bff; padding: 10px;">
+        <a href="/" style="color: white; font-size: 20px; text-decoration: none;">JanSamadhan</a>
+        <!---<div style="float: right;">
+            <a href="{% url 'home' %}" class="btn btn-primary">Home</a>
+            <a href="{% url 'submit_problem' %}" class="btn btn-primary">Submit Problem</a>
+            <a href="{% url 'view_problems' %}" class="btn btn-warning">View Problems</a>
+            <a href="{% url 'register' %}" class="btn btn-success">Register</a>
+            <a href="{% url 'login' %}" class="btn btn-danger">Logout</a>
+        </div>--->
+    
+    
+    <div style="float: right;">
+        <a href="{% url 'home' %}" class="btn btn-primary">Home</a>
+        <a href="{% url 'login' %}" class="btn btn-success">Login</a>
+        <a href="{% url 'logout' %}" class="btn btn-danger">Logout</a>
+        {% if request.user.user_type != 'Employee' %}
+            <a href="{% url 'submit_problem' %}" class="btn btn-primary">Submit Problem</a>
+            <a href="{% url 'view_problems' %}" class="btn btn-warning">View Your Problems</a>
+        {% endif %}
+        
+        {% if request.user.user_type == 'Employee' %}
+            <a href="{% url 'employee_dashboard' %}" class="btn btn-warning">View All Problems</a>
+        {% else %}
+            
+        {% endif %}
+        
+        
+    </div>
+</div>
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>

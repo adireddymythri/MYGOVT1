@@ -1,0 +1,75 @@
+/* users/static/css/style.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    overflow: hidden;
+    background-color: #007bff;
+    padding: 10px;
+    color: white;
+}
+
+.container {
+    margin-top: 20px;
+    padding: 20px;
+}
+
+.btn {
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+}
+
+.btn-primary {
+    background-color: #4d7fb5;
+}
+
+.btn-warning {
+    background-color: #ffc107;
+}
+
+.btn-success {
+    background-color: #28a745;
+    
+}
+
+.btn-danger {
+    background-color: #dc3545;
+}
+.problems-container {
+    width: 80%;
+    margin: 20px auto;
+
+}
+
+.problem-card {
+    border: 2px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #ebe5e5;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+}
+
+.problem-card h3 {
+    margin-top: 20;
+    margin-bottom: 10px;
+}
+
+.problem-card p {
+    margin: 5px 0;
+    color: #555;
+}
+
+.status-badge {
+    background-color: #ffc107;
+    color: #000;
+    padding: 3px 8px;
+    border-radius: 5px;
+    font-size: 12px;
+}

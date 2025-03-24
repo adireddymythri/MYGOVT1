@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="problems-container" style="width: 80%; margin: 20px auto;">
+    <h2 style="text-align: center; margin-bottom: 20px;">Your Submitted Problems</h2>
+    <a href="{% url 'submit_problem' %}" class="btn btn-success" style="margin-bottom: 20px;">Submit a Problem</a>
+
+    {% if problems %}
+        <div style="display: flex; flex-direction: column; gap: 15px;">
+            {% for problem in problems %}
+                <div style="border: 1px solid #ddd; padding: 20px; border-radius: 8px; background-color: #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                    <h3 style="margin: 0; padding-bottom: 10px;">
+                        {{ problem.description|truncatewords:5 }} 
+                        <span style="background-color: #ffc107; color: #000; padding: 3px 8px; border-radius: 5px; font-size: 12px;">
+                            {{ problem.status }}
+                        </span>
+                    </h3>
+                    <p><strong>Sector:</strong> {{ problem.sector }}</p>
+                    <p>{{ problem.description }}</p>
+                    {% if problem.image %}
+                        <img src="{{ problem.image.url }}" alt="Problem Image" style="width: 100%; max-width: 400px; border-radius: 8px; margin-top: 10px;">
+                    {% else %}
+                        <p style="color: #777;">No image uploaded.</p>
+                    {% endif %}
+                    <p style="color: #777;"><strong>Date:</strong> {{ problem.submission_date|date:"M d, Y" }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p style="text-align: center;">No problems submitted yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

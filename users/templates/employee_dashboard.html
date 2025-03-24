@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="dashboard-container">
+    <h2>Employee Dashboard</h2>
+
+    {% if problems %}
+        <form method="post">
+            {% csrf_token %}
+            <table border="1" class="table" style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+                <thead style="background-color: #007bff; color: white;">
+                    <tr>
+                        <th style="padding: 10px;">Sector</th>
+                        <th style="padding: 10px;">Description</th>
+                        <th style="padding: 10px;">Mandal</th>
+                        <th style="padding: 10px;">District</th>
+                        <th style="padding: 10px;">Status</th>
+                        <th style="padding: 10px;">Date</th>
+                        <th style="padding: 10px;">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for problem in problems %}
+                    <tr>
+                        <td style="padding: 10px;">{{ problem.sector }}</td>
+                        <td style="padding: 10px;">{{ problem.description }}</td>
+                        <td style="padding: 10px;">{{ problem.mandal }}</td>
+                        <td style="padding: 10px;">{{ problem.district }}</td>
+                        <td style="padding: 10px;">
+                            <select name="status_{{ problem.id }}" style="padding: 5px; border-radius: 5px;">
+                                <option value="Pending" {% if problem.status == "Pending" %}selected{% endif %}>Pending</option>
+                                <option value="In Progress" {% if problem.status == "In Progress" %}selected{% endif %}>In Progress</option>
+                                <option value="Resolved" {% if problem.status == "Resolved" %}selected{% endif %}>Resolved</option>
+                            </select>
+                        </td>
+                        <td style="padding: 10px;">{{ problem.submission_date }}</td>
+                        <td style="padding: 10px;">
+                            <input type="hidden" name="problem_id" value="{{ problem.id }}">
+                            <button type="submit" class="btn btn-success">Update</button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </form>
+    {% else %}
+        <p>No problems submitted yet.</p>
+    {% endif %}
+</div>
+{% endblock %}
